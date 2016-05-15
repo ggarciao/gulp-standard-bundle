@@ -1,52 +1,79 @@
 #gulp-standard-dest
 [![Build Status](https://travis-ci.org/ggarciao/gulp-standard-dest.svg?branch=master)](https://travis-ci.org/ggarciao/gulp-standard-dest)
-[![NPM version](https://badge.fury.io/js/gulp-standard.png)](http://badge.fury.io/js/gulp-standard)
 
-> [Standard](https://github.com/feross/standard/) linter for gulp
+> [Standard](https://github.com/feross/standard/) linter for gulp that use the given standard instance (or use the supported one as default)
 
 ## Information
-
-<table>
-<tr>
-<td>Package</td><td>gulp-standard</td>
-</tr>
-<tr>
-<td>Description</td>
-<td>Standard plugin for gulp</td>
-</tr>
-<tr>
-<td>Node version</td>
-<td>>= 0.9</td>
-</tr>
-<tr>
-<td>gulp version</td>
-<td>3.x</td>
-</tr>
-</table>
+Create to correctly support the usage of [Standard](https://github.com/feross/standard/) with gulp
 
 ## Usage
 
 #### Install
 
 ```sh
-$ npm install --save-dev gulp-standard
+$ npm install --save-dev gulp-standard-dest
 ```
 
 ## Examples
 
+Using the 'default' standard version (check package.json)
 ```javascript
-// include the required packages.
-var gulp = require('gulp'),
-  standard = require('gulp-standard')
+var gulp = require('gulp')
+var gstandard = require('gulp-standard-dest')
 
 gulp.task('standard', function () {
   return gulp.src(['./app.js'])
-    .pipe(standard())
-    .pipe(standard.reporter('default', {
+    .pipe(gstandard())
+    .pipe(gstandard.reporter('default', {
       breakOnError: true
     }))
 })
 ```
+
+Using the 'default' standard version with options
+```javascript
+var gulp = require('gulp')
+var standardopts = { globals : ['identifier'] }
+var gstandard = require('gulp-standard-dest')
+
+gulp.task('standard', function () {
+  return gulp.src(['./app.js'])
+    .pipe(gstandard(undefined, standardopts))
+    .pipe(gstandard.reporter('default', {
+      breakOnError: true
+    }))
+})
+
+Using a given standard instance
+```javascript
+var gulp = require('gulp')
+var standard = require('standard')
+var gstandard = require('gulp-standard-dest')
+
+gulp.task('standard', function () {
+  return gulp.src(['./app.js'])
+    .pipe(gstandard(standard))
+    .pipe(gstandard.reporter('default', {
+      breakOnError: true
+    }))
+})
+```
+Using a given standard instance with options
+```javascript
+var gulp = require('gulp')
+var standard = require('standard')
+var standardopts = { globals : ['identifier'] }
+var gstandard = require('gulp-standard-dest')
+
+gulp.task('standard', function () {
+  return gulp.src(['./app.js'])
+    .pipe(gstandard(standard, standardopts))
+    .pipe(gstandard.reporter('default', {
+      breakOnError: true
+    }))
+})
+```
+
 
 ## Reporters
 
