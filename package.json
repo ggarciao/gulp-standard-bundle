@@ -1,6 +1,6 @@
 {
   "name": "gulp-standard-dest",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Gulp plugin for checking JavaScript code with a given 'standard' instance",
   "main": "index.js",
   "keywords": [
