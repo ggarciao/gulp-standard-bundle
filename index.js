@@ -7,7 +7,7 @@ var gutil = require('gulp-util')
 var PLUGIN_NAME = require('./package.json').name
 var defaultReporter = require('./reporters/stylish')
 
-var GulpStandardDest = function (standardOpts, standardInstance) {
+var GulpStandardDest = function (standardInstance, standardOpts) {
   var validStandardOpts = {}
   if (!_.isUndefined(standardOpts) && _.isPlainObject(standardOpts)) {
     validStandardOpts = standardOpts

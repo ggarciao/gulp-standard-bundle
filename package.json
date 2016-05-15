@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "format": "standard-format -w index.js test/index.js reporters/stylish.js",
-    "test": "mocha"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
@@ -27,12 +27,12 @@
     "gulp-util": "^3.0.6",
     "lodash": "^4.12.0",
     "log-symbols": "^1.0.2",
-    "path": "^0.12.7",
     "standard": "^7.0.1",
     "through2": "^2.0.0"
   },
   "devDependencies": {
-    "mocha": "^2.2.5",
-    "should": "^8.3.1"
+    "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-mocha": "^2.2.0"
   }
 }
