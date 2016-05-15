@@ -1,15 +1,24 @@
 'use strict'
 
-var through2 = require('through2'),
-  standard = require('standard'),
-  gutil = require('gulp-util'),
-  PLUGIN_NAME = require('./package.json').name,
-  defaultReporter = require('./reporters/stylish')
+var _ = require('lodash')
+var through2 = require('through2')
+var standard = require('standard')
+var gutil = require('gulp-util')
+var PLUGIN_NAME = require('./package.json').name
+var defaultReporter = require('./reporters/stylish')
 
-function gulpStandard (opts) {
-  opts = opts || {}
+var GulpStandardDest = function (standardOpts, standardInstance) {
+  var validStandardOpts = {}
+  if (!_.isUndefined(standardOpts) && _.isPlainObject(standardOpts)) {
+    validStandardOpts = standardOpts
+  }
 
-  function processFile (file, enc, cb) {
+  var validStandardInstance = standard
+  if (!_.isUndefined(standardInstance)) {
+    validStandardInstance = standardInstance
+  }
+
+  var _processFile = function (file, enc, cb) {
     if (file.isNull()) {
       return cb(null, file)
     }
@@ -18,7 +27,7 @@ function gulpStandard (opts) {
       return cb(new gutil.PluginError(PLUGIN_NAME, 'Streams are not supported!'))
     }
 
-    standard.lintText(String(file.contents), opts, function (err, data) {
+    validStandardInstance.lintText(String(file.contents), validStandardOpts, function (err, data) {
       if (err) {
         return cb(err)
       }
@@ -27,29 +36,25 @@ function gulpStandard (opts) {
     })
   }
 
-  return through2.obj(processFile)
+  return through2.obj(_processFile)
 }
 
-gulpStandard.reporter = function (reporter, opts) {
-  // Load default reporter
+GulpStandardDest.reporter = function (reporter, opts) {
   if (reporter === 'default') return defaultReporter(opts)
 
-  // Load reporter from function
-  if (typeof reporter === 'function') return reporter(opts)
+  if (_.isFunction(reporter)) return reporter(opts)
 
-  // load built-in reporters
-  if (typeof reporter === 'string') {
+  if (_.isString(reporter)) {
     try {
       return require('gulp-standard/reporters/' + reporter)(opts)
-    } catch (err) {}
+    } catch (err) {
+      try {
+        return require(reporter)(opts)
+      } catch (err) {}
+    }
   }
 
-  // load full-path or module reporters
-  if (typeof reporter === 'string') {
-    try {
-      return require(reporter)(opts)
-    } catch (err) {}
-  }
+  return undefined
 }
 
-module.exports = gulpStandard
+module.exports = GulpStandardDest

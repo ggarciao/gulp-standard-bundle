@@ -9,7 +9,7 @@ require('mocha')
 
 var testFile1 = fs.readFileSync('test/fixtures/testFile1.js')
 
-describe('gulp-standard', function () {
+describe('gulp-standard-dest', function () {
   it('should lint files', function (done) {
     var stream = standard()
     var fakeFile = new gutil.File({

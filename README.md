@@ -1,5 +1,5 @@
-#gulp-standard
-[![Build Status](https://travis-ci.org/emgeee/gulp-standard.png?branch=master)](https://travis-ci.org/emgeee/gulp-standard)
+#gulp-standard-dest
+[![Build Status](https://travis-ci.org/ggarciao/gulp-standard-dest.svg?branch=master)](https://travis-ci.org/ggarciao/gulp-standard-dest)
 [![NPM version](https://badge.fury.io/js/gulp-standard.png)](http://badge.fury.io/js/gulp-standard)
 
 > [Standard](https://github.com/feross/standard/) linter for gulp
