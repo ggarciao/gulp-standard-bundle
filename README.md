@@ -87,17 +87,18 @@ stuff
 External
 ````
 
-You can also use some other custom made reporter
-````javascript
-var reporter = require(<SOME_REPORTER>);
+#### Custom
 
-stuff
+You can also use some other reporter instance
+````javascript
+var reporter = require(<REPORTER NAME>);
+...
   .pipe(standard())
   .pipe(standard.reporter(reporter, opts))
 ````
-OR - 
+Or pass the reporter name () 
 ````javascript
-stuff
+...
   .pipe(standard())
   .pipe(standard.reporter(<REPORTER NAME>, opts))
 ````
