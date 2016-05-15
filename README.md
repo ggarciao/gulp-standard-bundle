@@ -43,7 +43,7 @@ gulp.task('standard', function () {
       breakOnError: true
     }))
 })
-
+```
 Using a given standard instance
 ```javascript
 var gulp = require('gulp')
