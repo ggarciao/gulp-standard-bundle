@@ -27,8 +27,11 @@ function Stylish (options) {
       })
     })
 
-    // Error/Warning count
-    lines.push(logSymbols.error + ' ' + colors.red(data.errorCount + ' error' + (data.errorCount === 1 ? 's' : '')) + '\t' + logSymbols.warning + ' ' + colors.yellow(data.warningCount + ' warning' + (data.errorCount === 1 ? 's' : '')))
+    if (data.errorCount || data.warningCount) {
+      lines.push(logSymbols.error + ' ' + colors.red(data.errorCount + ' error' + (data.errorCount === 1 ? 's' : '')) + '\t' + logSymbols.warning + ' ' + colors.yellow(data.warningCount + ' warning' + (data.errorCount === 1 ? 's' : '')))
+    } else {
+      lines.push(logSymbols.success + ' ' + colors.green('OK'))
+    }
 
     return lines.join('\n') + '\n'
   }
@@ -65,9 +68,8 @@ function Stylish (options) {
     if (file.standard && (file.standard.errorCount || file.standard.warningCount)) {
       totalErrorCount += file.standard.errorCount
       totalWarningCount += file.standard.warningCount
-
-      console.log(reportFile(file.path, file.standard))
     }
+    console.log(reportFile(file.path, file.standard))
 
     cb()
   })

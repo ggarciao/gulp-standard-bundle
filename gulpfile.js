@@ -2,16 +2,15 @@ var gulp = require('gulp')
 
 var gmocha = require('gulp-mocha')
 
-// var standard = require('standard')
-// var gstandard = require('gulp-standard-dest')
+var gstandard = require('./')
 
-// gulp.task('standard', function () {
-//   return gulp.src(['**/*.js', '!node_modules/**/*'], {read: false})
-//     .pipe(gstandard(standard))
-//     .pipe(gstandard.reporter('default', { breakOnError: true }))
-// })
+gulp.task('standard', function () {
+  return gulp.src(['**/*.js', '!node_modules/**/*', '!test/data/**/*'], {read: true})
+    .pipe(gstandard())
+    .pipe(gstandard.reporter('default', { breakOnError: true }))
+})
 
-gulp.task('test', function () {
-  return gulp.src(['test/**/*.js','!test/fixtures/**/*'], {read: false})
+gulp.task('test', ['standard'], function () {
+  return gulp.src(['test/**/*.js', '!test/data/**/*'], {read: false})
     .pipe(gmocha({reporter: 'spec'}))
 })

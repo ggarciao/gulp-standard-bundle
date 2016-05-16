@@ -5,7 +5,6 @@ var through2 = require('through2')
 var standard = require('standard')
 var gutil = require('gulp-util')
 var PLUGIN_NAME = require('./package.json').name
-var defaultReporter = require('./reporters/stylish')
 
 var GulpStandardDest = function (standardInstance, standardOpts) {
   var validStandardOpts = {}
@@ -18,43 +17,43 @@ var GulpStandardDest = function (standardInstance, standardOpts) {
     validStandardInstance = standardInstance
   }
 
-  var _processFile = function (file, enc, cb) {
-    if (file.isNull()) {
-      return cb(null, file)
-    }
-
-    if (file.isStream()) {
-      return cb(new gutil.PluginError(PLUGIN_NAME, 'Streams are not supported!'))
-    }
-
-    validStandardInstance.lintText(String(file.contents), validStandardOpts, function (err, data) {
-      if (err) {
-        return cb(err)
+  return through2.obj(
+    function (file, enc, cb) {
+      if (file.isNull()) {
+        return cb(null, file)
       }
-      file.standard = data
-      cb(null, file)
-    })
-  }
 
-  return through2.obj(_processFile)
+      if (file.isStream()) {
+        return cb(new gutil.PluginError(PLUGIN_NAME, 'Streams are not supported!'))
+      }
+
+      validStandardInstance.lintText(String(file.contents), validStandardOpts,
+        function (err, data) {
+          file.standard = data
+          cb(err, file)
+        }
+      )
+    }
+  )
 }
 
 GulpStandardDest.reporter = function (reporter, opts) {
-  if (reporter === 'default') return defaultReporter(opts)
-
-  if (_.isFunction(reporter)) return reporter(opts)
-
+  var reporterInstance = {}
   if (_.isString(reporter)) {
     try {
-      return require('gulp-standard/reporters/' + reporter)(opts)
+      reporterInstance = require('./reporters/' + reporter)(opts)
     } catch (err) {
       try {
-        return require(reporter)(opts)
-      } catch (err) {}
+        reporterInstance = require(reporter)(opts)
+      } catch (err) {
+        reporterInstance = undefined
+      }
     }
+  } else if (_.isFunction(reporter)) {
+    reporterInstance = reporter(opts)
   }
 
-  return undefined
+  return reporterInstance
 }
 
 module.exports = GulpStandardDest
