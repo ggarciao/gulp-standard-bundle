@@ -1,5 +1,6 @@
 #gulp-standard-dest
 [![Build Status](https://travis-ci.org/ggarciao/gulp-standard-dest.svg?branch=master)](https://travis-ci.org/ggarciao/gulp-standard-dest)
+[![Dependencies Status](https://david-dm.org/ggarciao/gulp-standard-dest.svg)](https://david-dm.org/ggarciao/gulp-standard-dest.svg)
 
 > [Standard](https://github.com/feross/standard/) linter for gulp that use the given standard instance (or use the supported one as default)
 
