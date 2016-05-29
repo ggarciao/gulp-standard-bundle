@@ -6,7 +6,7 @@ var gutil = require('gulp-util')
 var colors = require('colors/safe')
 var logSymbols = require('log-symbols')
 var appRoot = require('app-root-path')
-var PLUGIN_NAME = require('../package.json').name
+var PLUGIN_NAME = require('../../package.json').name
 
 function Stylish (options) {
   var totalErrorCount = 0
@@ -18,39 +18,20 @@ function Stylish (options) {
 
     // Filename
     lines.push(colors.magenta.underline(path.relative(appRoot.path, filepath)))
-
-    // Loop file specific error/warning messages
-    data.results.forEach(function (file) {
-      file.messages.forEach(function (msg) {
-        var line = colors.yellow('line ' + msg.line + ':' + msg.column) + '\t' + colors.cyan(msg.message)
-        lines.push(line)
-      })
-    })
-
-    if (data.errorCount || data.warningCount) {
-      lines.push(logSymbols.error + ' ' + colors.red(data.errorCount + ' error' + (data.errorCount === 1 ? 's' : '')) + '\t' + logSymbols.warning + ' ' + colors.yellow(data.warningCount + ' warning' + (data.errorCount === 1 ? 's' : '')))
-    } else {
-      lines.push(logSymbols.success + ' ' + colors.green('OK'))
-    }
+    lines.push(logSymbols.success + ' ' + colors.green('Format OK'))
 
     return lines.join('\n') + '\n'
   }
 
   // Reporter header
   function reportHeader () {
-    console.log(colors.green('Standard linter results'))
+    console.log(colors.green('Standard formatter results'))
     console.log('======================================\n')
   }
 
   // Reporter footer
   function reportFooter () {
-    if (totalErrorCount === 0 && totalWarningCount === 0) {
-      console.log(logSymbols.success + ' ' + colors.green('All OK!'))
-    } else {
-      console.log('======================================')
-      console.log(logSymbols.error + colors.red(' Errors total: ' + totalErrorCount))
-      console.log(logSymbols.warning + colors.yellow(' Warnings total: ' + totalWarningCount) + '\n')
-    }
+    console.log(logSymbols.success + ' ' + colors.green('All OK!'))
   }
 
   reportHeader()
@@ -61,7 +42,7 @@ function Stylish (options) {
     }
 
     if (file.isStream()) {
-      return cb(new gutil.PluginError(PLUGIN_NAME, 'Streams are not supported!'))
+      return cb(new gutil.PluginError(PLUGIN_NAME, 'Streams are not supported!'), file)
     }
 
     // Report file specific stuff only when there are some errors/warnings
@@ -71,7 +52,7 @@ function Stylish (options) {
     }
     console.log(reportFile(file.path, file.standard))
 
-    cb()
+    cb(null, file)
   })
     .on('end', function () {
       reportFooter()

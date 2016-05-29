@@ -8,7 +8,7 @@
     "gulpplugin"
   ],
   "scripts": {
-    "format": "standard-format -w index.js test/index.js reporters/stylish.js",
+    "format": "gulp format",
     "test": "gulp test"
   },
   "repository": {
@@ -28,6 +28,8 @@
     "lodash": "^4.12.0",
     "log-symbols": "^1.0.2",
     "standard": "^7.0.1",
+    "standard-format": "^2.2.1",
+    "text-stream": "^1.0.1",
     "through2": "^2.0.0"
   },
   "devDependencies": {

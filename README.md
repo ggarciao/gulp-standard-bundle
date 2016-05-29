@@ -5,7 +5,7 @@
 > [Standard](https://github.com/feross/standard/) linter for gulp that use the given standard instance (or use the supported one as default)
 
 ## Information
-Create to correctly support the usage of [Standard](https://github.com/feross/standard/) with gulp
+Created to support the usage of [standard](https://github.com/feross/standard/) and [standard-format](https://github.com/maxogden/standard-format) with gulp
 
 ## Usage
 
@@ -15,17 +15,17 @@ Create to correctly support the usage of [Standard](https://github.com/feross/st
 $ npm install --save-dev gulp-standard-dest
 ```
 
-## Examples
+## Linter examples (standard)
 
-Using the 'default' standard version (check package.json)
+Using the 'default' standard version (check package dependencies)
 ```javascript
 var gulp = require('gulp')
-var gstandard = require('gulp-standard-dest')
+var linter = require('gulp-standard-dest').linter
 
-gulp.task('standard', function () {
+gulp.task('lint', function () {
   return gulp.src(['./app.js'])
-    .pipe(gstandard())
-    .pipe(gstandard.reporter('default', {
+    .pipe(linter())
+    .pipe(linter.reporter('default', {
       breakOnError: true
     }))
 })
@@ -34,13 +34,13 @@ gulp.task('standard', function () {
 Using the 'default' standard version with options
 ```javascript
 var gulp = require('gulp')
-var standardopts = { globals : ['identifier'] }
-var gstandard = require('gulp-standard-dest')
+var linteropts = { globals : ['identifier'] }
+var linter = require('gulp-standard-dest').linter
 
-gulp.task('standard', function () {
+gulp.task('lint', function () {
   return gulp.src(['./app.js'])
-    .pipe(gstandard(undefined, standardopts))
-    .pipe(gstandard.reporter('default', {
+    .pipe(linter(undefined, linteropts))
+    .pipe(linter.reporter('default', {
       breakOnError: true
     }))
 })
@@ -49,12 +49,12 @@ Using a given standard instance
 ```javascript
 var gulp = require('gulp')
 var standard = require('standard')
-var gstandard = require('gulp-standard-dest')
+var linter = require('gulp-standard-dest').linter
 
-gulp.task('standard', function () {
+gulp.task('lint', function () {
   return gulp.src(['./app.js'])
-    .pipe(gstandard(standard))
-    .pipe(gstandard.reporter('default', {
+    .pipe(linter(standard))
+    .pipe(linter.reporter('default', {
       breakOnError: true
     }))
 })
@@ -63,18 +63,44 @@ Using a given standard instance with options
 ```javascript
 var gulp = require('gulp')
 var standard = require('standard')
-var standardopts = { globals : ['identifier'] }
-var gstandard = require('gulp-standard-dest')
+var linteropts = { globals : ['identifier'] }
+var linter = require('gulp-standard-dest').linter
 
-gulp.task('standard', function () {
+gulp.task('lint', function () {
   return gulp.src(['./app.js'])
-    .pipe(gstandard(standard, standardopts))
-    .pipe(gstandard.reporter('default', {
+    .pipe(linter(standard, linteropts))
+    .pipe(linter.reporter('default', {
       breakOnError: true
     }))
 })
 ```
 
+## Formatter examples (standard-format)
+
+Using the 'default' standard-format version (check package dependencies)
+```javascript
+var gulp = require('gulp')
+var formatter = require('gulp-standard-dest').formatter
+
+gulp.task('format', function () {
+  return gulp.src(['./app.js'])
+    .pipe(formatter())
+    .pipe(formatter.reporter('default'))
+})
+```
+
+Using a given standard-format instance
+```javascript
+var gulp = require('gulp')
+var standardformat = require('standard-format')
+var formatter = require('gulp-standard-dest').formatter
+
+gulp.task('format', function () {
+  return gulp.src(['./app.js'])
+    .pipe(formatter(standardformat))
+    .pipe(formatter.reporter('default'))
+})
+```
 
 ## Reporters
 
@@ -83,9 +109,8 @@ gulp.task('standard', function () {
 You can choose a reporter when you call
 ````javascript
 stuff
-  .pipe(standard())
-  .pipe(standard.reporter('default', opts))
-External
+  .pipe(linter())
+  .pipe(linter.reporter('default', opts))
 ````
 
 #### Custom
@@ -94,16 +119,16 @@ You can also use some other reporter instance
 ````javascript
 var reporter = require(<REPORTER NAME>);
 ...
-  .pipe(standard())
-  .pipe(standard.reporter(reporter, opts))
+  .pipe(formatter())
+  .pipe(formatter.reporter(reporter))
 ````
 Or pass the reporter name () 
 ````javascript
 ...
-  .pipe(standard())
-  .pipe(standard.reporter(<REPORTER NAME>, opts))
+  .pipe(linter())
+  .pipe(linter.reporter(<REPORTER NAME>, opts))
 ````
-#### Reporter options
+#### Linter Reporter options
 
 ##### breakOnError
 
@@ -119,5 +144,8 @@ Default: `false`
 
 Emit gulp error on reported warning
 
+#### Formatter Reporter options
+
+No options
 
 ## LICENSE [MIT](LICENSE)

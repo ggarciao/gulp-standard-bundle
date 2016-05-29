@@ -2,7 +2,7 @@
 
 var fs = require('fs')
 var gutil = require('gulp-util')
-var standard = require('../')
+var linter = require('../').Linter
 
 var expect = require('chai').expect
 
@@ -10,7 +10,7 @@ var testFile1 = fs.readFileSync('test/data/testFile1.js')
 
 describe('gulp-standard-dest', function () {
   it('should lint files', function (done) {
-    var stream = standard()
+    var stream = linter()
     var fakeFile = new gutil.File({
       base: 'test/data',
       cwd: 'test/',
