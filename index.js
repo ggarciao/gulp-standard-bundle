@@ -42,7 +42,7 @@ GulpStandardDest.Linter = function (standardInstance, standardOpts) {
 }
 
 GulpStandardDest.Linter.Reporter = function (reporter, opts) {
-  var reporterInstance = undefined
+  var reporterInstance = {}
   if (_.isString(reporter)) {
     try {
       reporterInstance = require('./reporters/linter/' + reporter)(opts)
@@ -98,7 +98,7 @@ GulpStandardDest.Formatter = function (standardFormatInstance) {
 }
 
 GulpStandardDest.Formatter.Reporter = function (reporter, opts) {
-  var reporterInstance = undefined
+  var reporterInstance = {}
   if (_.isString(reporter)) {
     try {
       reporterInstance = require('./reporters/formatter/' + reporter)(opts)
