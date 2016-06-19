@@ -14,7 +14,7 @@
   "scripts": {
     "format": "gulp format",
     "test": "gulp test",
-    "coveralls" : "gulp coveralls"
+    "coveralls": "gulp coveralls"
   },
   "repository": {
     "type": "git",
@@ -37,6 +37,7 @@
     "through2": "^2.0.0"
   },
   "devDependencies": {
+    "bithound": "^1.3.0",
     "chai": "^3.5.0",
     "gulp": "^3.9.1",
     "gulp-coveralls": "^0.1.4",
