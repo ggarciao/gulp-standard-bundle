@@ -1,7 +1,8 @@
 #gulp-standard-dest
 [![npm version](https://badge.fury.io/js/gulp-standard-dest.svg)](https://badge.fury.io/js/gulp-standard-dest)
-[![Build Status](https://travis-ci.org/ggarciao/gulp-standard-dest.svg?branch=master)](https://travis-ci.org/ggarciao/gulp-standard-dest)
 [![Dependencies Status](https://david-dm.org/ggarciao/gulp-standard-dest.svg)](https://david-dm.org/ggarciao/gulp-standard-dest)
+[![Build Status](https://travis-ci.org/ggarciao/gulp-standard-dest.svg?branch=master)](https://travis-ci.org/ggarciao/gulp-standard-dest)
+[![Coverage Status](https://coveralls.io/repos/github/ggarciao/gulp-standard-dest/badge.svg?branch=master)](https://coveralls.io/github/ggarciao/gulp-standard-dest?branch=master)
 
 > [Standard](https://github.com/feross/standard/) linter for gulp that use the given standard instance (or use the supported one as default)
 

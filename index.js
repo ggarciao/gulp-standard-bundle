@@ -2,7 +2,6 @@
 
 var _ = require('lodash')
 var through2 = require('through2')
-var ts = require('text-stream')
 var standard = require('standard')
 var standardFormat = require('standard-format')
 var gutil = require('gulp-util')
@@ -22,19 +21,19 @@ GulpStandardDest.Linter = function (standardInstance, standardOpts) {
   }
 
   return through2.obj(
-    function (file, enc, cb) {
+    function (file, enc, callback) {
       if (file.isNull()) {
-        return cb(null, file)
+        return callback(null, file)
       }
 
       if (file.isStream()) {
-        return cb(new gutil.PluginError(PLUGIN_NAME, 'Streams are not supported!'))
+        return callback(new gutil.PluginError(PLUGIN_NAME, 'Streams are not supported!'), file)
       }
 
       validStandardInstance.lintText(String(file.contents), validStandardOpts,
         function (err, data) {
           file.standard = data
-          cb(err, file)
+          callback(err, file)
         }
       )
     }
@@ -70,29 +69,20 @@ GulpStandardDest.Formatter = function (standardFormatInstance) {
 
   return through2.obj(
     function (file, enc, callback) {
-      // Do nothing if no contents
       if (file.isNull()) {
-        this.push(file)
-        return callback()
+        return callback(null, file)
       }
 
       if (file.isStream()) {
-        file.contents = file.contents
-          .pipe(ts(validStandardFormatInstance.transform))
-          .setEncoding('utf8')
-
-        this.push(file)
-        return callback()
+        return callback(new gutil.PluginError(PLUGIN_NAME, 'Streams are not supported!'), file)
       }
 
-      // check if file.contents is a `Buffer`
       if (file.isBuffer()) {
         var formatted = validStandardFormatInstance.transform(file.contents.toString())
         file.contents = new Buffer(formatted)
-
-        this.push(file)
       }
-      return callback()
+
+      return callback(null, file)
     }
   )
 }

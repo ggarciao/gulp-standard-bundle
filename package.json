@@ -1,16 +1,20 @@
 {
   "name": "gulp-standard-dest",
   "version": "0.2.0",
-  "description": "Gulp plugin for checking JavaScript code with a given 'standard' instance and formatting js files with standard-format",
+  "description": "Gulp plugin for checking JavaScript code with a given 'standard' instance and formatting js files with a given 'standard-format' instance",
   "main": "index.js",
   "keywords": [
     "standard",
     "standard-format",
+    "gulp",
+    "plugin",
+    "gulp plugin",
     "gulpplugin"
   ],
   "scripts": {
     "format": "gulp format",
-    "test": "gulp test"
+    "test": "gulp test",
+    "coveralls" : "gulp coveralls"
   },
   "repository": {
     "type": "git",
@@ -30,12 +34,14 @@
     "log-symbols": "^1.0.2",
     "standard": "^7.0.1",
     "standard-format": "^2.2.1",
-    "text-stream": "^1.0.1",
     "through2": "^2.0.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "gulp": "^3.9.1",
-    "gulp-mocha": "^2.2.0"
+    "gulp-coveralls": "^0.1.4",
+    "gulp-istanbul": "^1.0.0",
+    "gulp-mocha": "^2.2.0",
+    "sinon": "^1.17.4"
   }
 }
