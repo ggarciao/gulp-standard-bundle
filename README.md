@@ -1,8 +1,9 @@
-[![NPM](https://nodei.co/npm/gulp-standard-dest.png)](https://nodei.co/npm/gulp-standard-dest/)
+#gulp-standard-dest
 
 > Linter for gulp that use the given [standard](https://github.com/feross/standard/) instance (or use the supported one as default) and format the code with a given [standard-format](https://github.com/maxogden/standard-format) instance (or use the supported one as default)
 
-#gulp-standard-dest
+[![NPM](https://nodei.co/npm/gulp-standard-dest.png)](https://nodei.co/npm/gulp-standard-dest/)
+
 [![Build Status](https://travis-ci.org/ggarciao/gulp-standard-dest.svg?branch=master)](https://travis-ci.org/ggarciao/gulp-standard-dest)
 [![bitHound Overall Score](https://www.bithound.io/github/ggarciao/gulp-standard-dest/badges/score.svg)](https://www.bithound.io/github/ggarciao/gulp-standard-dest)
 [![bitHound Dependencies](https://www.bithound.io/github/ggarciao/gulp-standard-dest/badges/dependencies.svg)](https://www.bithound.io/github/ggarciao/gulp-standard-dest/master/dependencies/npm)
