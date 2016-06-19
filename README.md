@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/ggarciao/gulp-standard-dest.svg?branch=master)](https://travis-ci.org/ggarciao/gulp-standard-dest)
 [![Coverage Status](https://coveralls.io/repos/github/ggarciao/gulp-standard-dest/badge.svg?branch=master)](https://coveralls.io/github/ggarciao/gulp-standard-dest?branch=master)
 
-> [Standard](https://github.com/feross/standard/) linter for gulp that use the given standard instance (or use the supported one as default)
+> Linter for gulp that use the given [standard](https://github.com/feross/standard/) instance (or use the supported one as default) and format the code with a given [standard-format](https://github.com/maxogden/standard-format) instance (or use the supported one as default)
 
 [![NPM](https://nodei.co/npm/gulp-standard-dest.png)](https://nodei.co/npm/gulp-standard-dest/)
 
