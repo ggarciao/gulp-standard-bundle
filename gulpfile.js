@@ -27,7 +27,7 @@ gulp.task('lint', function () {
 })
 
 gulp.task('pre-test', function () {
-  return gulp.src(modulefiles)
+  return gulp.src(modulefiles, {read: true})
     .pipe(gistanbul())
     .pipe(gistanbul.hookRequire())
 })
@@ -40,6 +40,6 @@ gulp.task('test', ['lint', 'pre-test'], function () {
 })
 
 gulp.task('coveralls', function () {
-  return gulp.src(coverallsfiles, {read: false})
+  return gulp.src(coverallsfiles, {read: true})
     .pipe(gcoveralls())
 })
