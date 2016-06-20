@@ -1,14 +1,17 @@
 {
   "name": "gulp-standard-dest",
   "version": "0.2.3",
-  "description": "Gulp plugin for checking JavaScript code with a given 'standard' instance and formatting js files with a given 'standard-format' instance",
+  "description": "Gulp plugin for checking code with 'standard' and formatting code with 'standard-format'",
   "main": "index.js",
   "keywords": [
     "standard",
+    "format",
+    "standard format",
     "standard-format",
     "gulp",
     "plugin",
     "gulp plugin",
+    "gulp-plugin",
     "gulpplugin"
   ],
   "scripts": {

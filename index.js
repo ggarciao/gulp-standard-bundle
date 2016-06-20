@@ -10,35 +10,33 @@ var PLUGIN_NAME = require('./package.json').name
 var GulpStandardDest = {}
 
 GulpStandardDest.Linter = function (standardInstance, standardOpts) {
+  var validStandardInstance = standard
+  if (!_.isUndefined(standardInstance) && _.isFunction(standardInstance.lintText)) {
+    validStandardInstance = standardInstance
+  }
+
   var validStandardOpts = {}
   if (!_.isUndefined(standardOpts) && _.isPlainObject(standardOpts)) {
     validStandardOpts = standardOpts
   }
 
-  var validStandardInstance = standard
-  if (!_.isUndefined(standardInstance)) {
-    validStandardInstance = standardInstance
-  }
-
   return through2.obj(
     function (file, enc, callback) {
-      if (file.isNull()) {
+      if (file.isNull() || file.isStream()) {
+        file.standard = { skipped: true }
         return callback(null, file)
-      }
-
-      if (file.isStream()) {
-        return callback(new gutil.PluginError(PLUGIN_NAME, 'Streams are not supported!'), file)
       }
 
       validStandardInstance.lintText(String(file.contents), validStandardOpts,
         function (err, data) {
-          file.standard = data
+          file.standard = !_.isUndefined(data) && _.isPlainObject(data) ? data : { skipped: true }
           callback(err, file)
         }
       )
     }
   )
 }
+GulpStandardDest.linter = GulpStandardDest.Linter
 
 GulpStandardDest.Linter.Reporter = function (reporter, opts) {
   var reporterInstance = {}
@@ -59,7 +57,6 @@ GulpStandardDest.Linter.Reporter = function (reporter, opts) {
   return reporterInstance
 }
 GulpStandardDest.Linter.reporter = GulpStandardDest.Linter.Reporter
-GulpStandardDest.linter = GulpStandardDest.Linter
 
 GulpStandardDest.Formatter = function (standardFormatInstance) {
   var validStandardFormatInstance = standardFormat
@@ -86,6 +83,7 @@ GulpStandardDest.Formatter = function (standardFormatInstance) {
     }
   )
 }
+GulpStandardDest.formatter = GulpStandardDest.Formatter
 
 GulpStandardDest.Formatter.Reporter = function (reporter, opts) {
   var reporterInstance = {}
@@ -106,6 +104,5 @@ GulpStandardDest.Formatter.Reporter = function (reporter, opts) {
   return reporterInstance
 }
 GulpStandardDest.Formatter.reporter = GulpStandardDest.Formatter.Reporter
-GulpStandardDest.formatter = GulpStandardDest.Formatter
 
 module.exports = GulpStandardDest
