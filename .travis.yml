@@ -17,4 +17,4 @@ before_script:
   - npm install -g bithound
 after_script:
   - npm run coveralls
-  - bithound check git@github.com:ggarciao/gulp-standard-dest.git
+  - bithound check git@github.com:ggarciao/gulp-standard-bundle.git

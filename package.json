@@ -1,5 +1,5 @@
 {
-  "name": "gulp-standard-dest",
+  "name": "gulp-standard-bundle",
   "version": "0.2.3",
   "description": "Gulp plugin for checking code with 'standard' and formatting code with 'standard-format'",
   "main": "index.js",
@@ -21,14 +21,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ggarciao/gulp-standard-dest"
+    "url": "https://github.com/ggarciao/gulp-standard-bundle"
   },
   "author": "ggarciao <me@ggarciao.com> (http://www.ggarciao.com/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ggarciao/gulp-standard-dest/issues"
+    "url": "https://github.com/ggarciao/gulp-standard-bundle/issues"
   },
-  "homepage": "https://github.com/ggarciao/gulp-standard-dest",
+  "homepage": "https://github.com/ggarciao/gulp-standard-bundle",
   "dependencies": {
     "app-root-path": "^1.0.0",
     "colors": "^1.1.2",

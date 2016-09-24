@@ -11,7 +11,7 @@ var expect = require('chai').expect
 
 var testFile1 = fs.readFileSync('test/data/testFile1.js')
 
-describe('gulp-standard-dest', function () {
+describe('gulp-standard-bundle', function () {
   var _lintFunction = function (instance, options, done) {
     var stream = linter(instance, options)
     var fakeFile = new gutil.File({
