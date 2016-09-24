@@ -1,6 +1,6 @@
 {
   "name": "gulp-standard-bundle",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Gulp plugin for checking code with 'standard' and formatting code with 'standard-format'",
   "main": "index.js",
   "keywords": [
