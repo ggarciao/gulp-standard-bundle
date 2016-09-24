@@ -3,14 +3,14 @@
 
 > Linter for gulp that use the given [standard](https://github.com/feross/standard/) instance (or use the supported one as default) and format the code with a given [standard-format](https://github.com/maxogden/standard-format) instance (or use the supported one as default)
 
-[![NPM](https://nodei.co/npm/gulp-standard-bundle.png)](https://nodei.co/npm/gulp-standard-bundle/)
+[![NPM](https://nodei.co/npm/gulp-standard-dest.png)](https://nodei.co/npm/gulp-standard-dest/)
 
-[![Build Status](https://travis-ci.org/ggarciao/gulp-standard-bundle.svg?branch=master)](https://travis-ci.org/ggarciao/gulp-standard-bundle)
-[![Coverage Status](https://coveralls.io/repos/github/ggarciao/gulp-standard-bundle/badge.svg?branch=master)](https://coveralls.io/github/ggarciao/gulp-standard-bundle?branch=master)
-[![bitHound Overall Score](https://www.bithound.io/github/ggarciao/gulp-standard-bundle/badges/score.svg)](https://www.bithound.io/github/ggarciao/gulp-standard-bundle)
-[![bitHound Dependencies](https://www.bithound.io/github/ggarciao/gulp-standard-bundle/badges/dependencies.svg)](https://www.bithound.io/github/ggarciao/gulp-standard-bundle/master/dependencies/npm)
-[![bitHound Dev Dependencies](https://www.bithound.io/github/ggarciao/gulp-standard-bundle/badges/devDependencies.svg)](https://www.bithound.io/github/ggarciao/gulp-standard-bundle/master/dependencies/npm)
-[![bitHound Code](https://www.bithound.io/github/ggarciao/gulp-standard-bundle/badges/code.svg)](https://www.bithound.io/github/ggarciao/gulp-standard-bundle)
+[![Build Status](https://travis-ci.org/ggarciao/gulp-standard-dest.svg?branch=master)](https://travis-ci.org/ggarciao/gulp-standard-dest)
+[![Coverage Status](https://coveralls.io/repos/github/ggarciao/gulp-standard-dest/badge.svg?branch=master)](https://coveralls.io/github/ggarciao/gulp-standard-dest?branch=master)
+[![bitHound Overall Score](https://www.bithound.io/github/ggarciao/gulp-standard-dest/badges/score.svg)](https://www.bithound.io/github/ggarciao/gulp-standard-dest)
+[![bitHound Dependencies](https://www.bithound.io/github/ggarciao/gulp-standard-dest/badges/dependencies.svg)](https://www.bithound.io/github/ggarciao/gulp-standard-dest/master/dependencies/npm)
+[![bitHound Dev Dependencies](https://www.bithound.io/github/ggarciao/gulp-standard-dest/badges/devDependencies.svg)](https://www.bithound.io/github/ggarciao/gulp-standard-dest/master/dependencies/npm)
+[![bitHound Code](https://www.bithound.io/github/ggarciao/gulp-standard-dest/badges/code.svg)](https://www.bithound.io/github/ggarciao/gulp-standard-dest)
 
 ## Information
 Created to support the usage of [standard](https://github.com/feross/standard/) and [standard-format](https://github.com/maxogden/standard-format) with gulp (fork of [gulp-standard](https://www.npmjs.com/package/gulp-standard) to include the formatter)
