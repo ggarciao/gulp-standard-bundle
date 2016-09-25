@@ -7,9 +7,9 @@ var standardFormat = require('standard-format')
 var gutil = require('gulp-util')
 var PLUGIN_NAME = require('./package.json').name
 
-var GulpStandardDest = {}
+var GulpStandardBundle = {}
 
-GulpStandardDest.Linter = function (standardInstance, standardOpts) {
+GulpStandardBundle.Linter = function (standardInstance, standardOpts) {
   var validStandardInstance = standard
   if (!_.isUndefined(standardInstance) && _.isFunction(standardInstance.lintText)) {
     validStandardInstance = standardInstance
@@ -36,9 +36,9 @@ GulpStandardDest.Linter = function (standardInstance, standardOpts) {
     }
   )
 }
-GulpStandardDest.linter = GulpStandardDest.Linter
+GulpStandardBundle.linter = GulpStandardBundle.Linter
 
-GulpStandardDest.Linter.Reporter = function (reporter, opts) {
+GulpStandardBundle.Linter.Reporter = function (reporter, opts) {
   var reporterInstance = {}
   if (_.isString(reporter)) {
     try {
@@ -56,9 +56,9 @@ GulpStandardDest.Linter.Reporter = function (reporter, opts) {
 
   return reporterInstance
 }
-GulpStandardDest.Linter.reporter = GulpStandardDest.Linter.Reporter
+GulpStandardBundle.Linter.reporter = GulpStandardBundle.Linter.Reporter
 
-GulpStandardDest.Formatter = function (standardFormatInstance) {
+GulpStandardBundle.Formatter = function (standardFormatInstance) {
   var validStandardFormatInstance = standardFormat
   if (!_.isUndefined(standardFormatInstance)) {
     validStandardFormatInstance = standardFormatInstance
@@ -83,9 +83,9 @@ GulpStandardDest.Formatter = function (standardFormatInstance) {
     }
   )
 }
-GulpStandardDest.formatter = GulpStandardDest.Formatter
+GulpStandardBundle.formatter = GulpStandardBundle.Formatter
 
-GulpStandardDest.Formatter.Reporter = function (reporter, opts) {
+GulpStandardBundle.Formatter.Reporter = function (reporter, opts) {
   var reporterInstance = {}
   if (_.isString(reporter)) {
     try {
@@ -103,6 +103,6 @@ GulpStandardDest.Formatter.Reporter = function (reporter, opts) {
 
   return reporterInstance
 }
-GulpStandardDest.Formatter.reporter = GulpStandardDest.Formatter.Reporter
+GulpStandardBundle.Formatter.reporter = GulpStandardBundle.Formatter.Reporter
 
-module.exports = GulpStandardDest
+module.exports = GulpStandardBundle
