@@ -110,6 +110,19 @@ gulp.task('format', function () {
 })
 ```
 
+Overriding the formated source files
+```javascript
+var gulp = require('gulp')
+var formatter = require('gulp-standard-bundle').formatter
+
+gulp.task('format', function () {
+  return gulp.src('**/*.js')
+    .pipe(formatter())
+    .pipe(formatter.reporter('default'))
+    .pipe(gulp.dest('.'))
+})
+```
+
 ## Reporters
 
 #### Built-in
@@ -130,7 +143,7 @@ var reporter = require(<REPORTER NAME>);
   .pipe(formatter())
   .pipe(formatter.reporter(reporter))
 ````
-Or pass the reporter name () 
+Or pass the reporter name ()
 ````javascript
 ...
   .pipe(linter())
